@@ -1,0 +1,278 @@
+/* Import elegant fonts - must be first */
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=DM+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Base styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'DM Sans', system-ui, sans-serif;
+  overflow-x: hidden;
+  background: #87CEEB;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(to bottom, #FFB6C1, #FF69B4);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(to bottom, #FF69B4, #FF1493);
+}
+
+/* Cloud-like glass effect */
+.glass {
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+}
+
+.glass-light {
+  background: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.08);
+}
+
+/* Pink retro title style */
+.retro-title {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  color: #FFB6C1;
+  text-shadow: 
+    3px 3px 0 #000,
+    -1px -1px 0 #000,
+    1px -1px 0 #000,
+    -1px 1px 0 #000,
+    1px 1px 0 #000;
+  letter-spacing: 0.02em;
+}
+
+/* Gradient text - warm pink */
+.gradient-text {
+  background: linear-gradient(135deg, #FFB6C1, #FF69B4, #FFD700);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.gradient-text-pink {
+  background: linear-gradient(135deg, #FF69B4, #FFB6C1, #FFA07A);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Rainbow stripe decoration */
+.rainbow-stripe {
+  background: linear-gradient(
+    180deg,
+    #FF6B6B 0%,
+    #FF6B6B 20%,
+    #FFD93D 20%,
+    #FFD93D 40%,
+    #6BCB77 40%,
+    #6BCB77 60%,
+    #4D96FF 60%,
+    #4D96FF 80%,
+    #9B59B6 80%,
+    #9B59B6 100%
+  );
+}
+
+/* Floating decorative elements */
+.floating-element {
+  animation: gentleFloat 6s ease-in-out infinite;
+}
+
+@keyframes gentleFloat {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  50% { transform: translateY(-15px) rotate(5deg); }
+}
+
+/* Float animation for decorations */
+@keyframes floatUp {
+  0% { 
+    transform: translateY(100vh) rotate(0deg); 
+    opacity: 0; 
+  }
+  10% { opacity: 1; }
+  90% { opacity: 1; }
+  100% { 
+    transform: translateY(-100vh) rotate(360deg); 
+    opacity: 0; 
+  }
+}
+
+.animate-float-up {
+  animation: floatUp 20s linear infinite;
+}
+
+/* Modal backdrop */
+.modal-backdrop {
+  background: rgba(135, 206, 235, 0.85);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+/* Fullscreen viewer backdrop */
+.fullscreen-backdrop {
+  background: rgba(0, 0, 0, 0.92);
+}
+
+/* Caption slide up animation */
+.caption-overlay {
+  transform: translateY(100%);
+  transition: transform 0.3s ease;
+}
+
+.gallery-item:hover .caption-overlay {
+  transform: translateY(0);
+}
+
+/* Custom focus styles */
+button:focus-visible,
+a:focus-visible {
+  outline: 2px solid #FF69B4;
+  outline-offset: 2px;
+}
+
+/* Disable body scroll when modal is open */
+body.modal-open {
+  overflow: hidden;
+}
+
+/* Card hover tilt effect */
+.card-tilt {
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+  transform-style: preserve-3d;
+}
+
+.card-tilt:hover {
+  transform: perspective(1000px) rotateX(5deg) rotateY(-5deg) translateY(-8px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+}
+
+/* Timeline horizontal scroll */
+.timeline-scroll {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.timeline-scroll::-webkit-scrollbar {
+  display: none;
+}
+
+/* Cloud background pattern */
+.cloud-bg {
+  background-image: 
+    radial-gradient(ellipse 300px 100px at 10% 90%, rgba(255,255,255,0.6) 0%, transparent 70%),
+    radial-gradient(ellipse 400px 120px at 90% 80%, rgba(255,255,255,0.5) 0%, transparent 70%),
+    radial-gradient(ellipse 250px 80px at 30% 95%, rgba(255,255,255,0.4) 0%, transparent 70%),
+    radial-gradient(ellipse 350px 100px at 70% 85%, rgba(255,255,255,0.5) 0%, transparent 70%);
+}
+
+/* Elegant serif headings */
+.font-elegant {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+}
+
+/* Clean sans body */
+.font-clean {
+  font-family: 'DM Sans', system-ui, sans-serif;
+}
+
+/* Button pill style */
+.btn-pill {
+  background: rgba(255, 255, 255, 0.95);
+  border: 2px solid rgba(0, 0, 0, 0.1);
+  padding: 12px 28px;
+  border-radius: 50px;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.btn-pill:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+  background: #fff;
+}
+
+/* Modal animations */
+@keyframes modalIn {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.9);
+  }
+  100% {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+  }
+}
+
+.animate-modal-in {
+  animation: modalIn 0.3s ease-out forwards;
+}
+
+/* Image slide up animation */
+@keyframes slideUp {
+  0% {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-slide-up {
+  opacity: 0;
+  animation: slideUp 0.4s ease-out forwards;
+}
+
+/* Modal gallery scroll styling */
+.modal-gallery-scroll {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255, 105, 180, 0.4) transparent;
+}
+
+.modal-gallery-scroll::-webkit-scrollbar {
+  width: 6px;
+}
+
+.modal-gallery-scroll::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.modal-gallery-scroll::-webkit-scrollbar-thumb {
+  background: rgba(255, 105, 180, 0.4);
+  border-radius: 3px;
+}
+
+.modal-gallery-scroll::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 105, 180, 0.6);
+}
