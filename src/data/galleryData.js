@@ -107,6 +107,20 @@ export const galleryData = {
       caption: 'Morning coffee rituals',
     },
   ],
+  '2021-Summer': [
+    {
+      img: 'https://images.unsplash.com/photo-1488085061387-422e29b40080?w=600&h=600&fit=crop',
+      caption: 'Beach vacation memories',
+    },
+    {
+      img: 'https://images.unsplash.com/photo-1507608616759-54f48f0af0ee?w=600&h=600&fit=crop',
+      caption: 'Summer sunshine and smiles',
+    },
+    {
+      img: 'https://images.unsplash.com/photo-1506929562872-bb421503ef21?w=600&h=600&fit=crop',
+      caption: 'Relaxing by the ocean',
+    },
+  ],
   '2022': [
     {
       img: 'https://images.unsplash.com/photo-1529333166437-7750a6dd5a70?w=600&h=600&fit=crop',
@@ -133,6 +147,20 @@ export const galleryData = {
       caption: 'Holiday festivities',
     },
   ],
+  '2022-Fall': [
+    {
+      img: 'https://images.unsplash.com/photo-1523438885200-e635ba2c371e?w=600&h=600&fit=crop',
+      caption: 'Cozy nights at home',
+    },
+    {
+      img: 'https://images.unsplash.com/photo-1513151233558-d860c5398176?w=600&h=600&fit=crop',
+      caption: 'Holiday festivities',
+    },
+    {
+      img: 'https://images.unsplash.com/photo-1517457373958-b7bdd4587205?w=600&h=600&fit=crop',
+      caption: 'Autumn celebrations',
+    },
+  ],
   '2023': [
     {
       img: 'https://images.unsplash.com/photo-1522771739844-6a9f6d5f14af?w=600&h=600&fit=crop',
@@ -140,8 +168,37 @@ export const galleryData = {
     },
     {
       img: 'https://images.unsplash.com/photo-1484154218962-a197022b5858?w=600&h=600&fit=crop',
-      caption: 'Creating our cozy space',
     },
+  ],
+  '2023-Winter': [
+    {
+      img: 'https://images.unsplash.com/photo-1513151233558-d860c5398176?w=600&h=600&fit=crop',
+      caption: 'Holiday decorations',
+    },
+    {
+      img: 'https://images.unsplash.com/photo-1482517967863-00e15c9b44be?w=600&h=600&fit=crop',
+      caption: 'Cozy winter nights',
+    },
+    {
+      img: 'https://images.unsplash.com/photo-1512389142860-9c449e58a543?w=600&h=600&fit=crop',
+      caption: 'Winter magic together',
+    },
+  ],
+  '2024': [
+    {
+      img: 'https://images.unsplash.com/photo-1518568814500-bf0f8d125f46?w=600&h=600&fit=crop',
+      caption: 'New beginnings',
+    },
+    {
+      img: 'https://images.unsplash.com/photo-1529635706996-373f001ff0cd?w=600&h=600&fit=crop',
+      caption: 'Celebrating us',
+    },
+    {
+      img: 'https://images.unsplash.com/photo-1516450137517-162bfbeb8dba?w=600&h=600&fit=crop',
+      caption: 'Beautiful moments',
+    },
+  ],
+  '2024-2025': [
     {
       img: 'https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=600&h=600&fit=crop',
       caption: 'Cooking together is our love language',

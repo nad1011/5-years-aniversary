@@ -48,19 +48,48 @@ const Timeline = ({ onImageClick }) => {
     }
   };
 
-  // Timeline periods - each represents a time range
-  const timelinePeriods = [
-    { label: '1-2021', start: new Date('2021-01-01'), end: new Date('2021-05-31') },
-    { label: '12-2021', start: new Date('2021-06-01'), end: new Date('2022-12-31') },
-    { label: '1-2022', start: new Date('2022-01-01'), end: new Date('2022-05-30') },
-    { label: '12-2022', start: new Date('2022-06-01'), end: new Date('2023-12-31') },
-    { label: '6-2023', start: new Date('2023-06-01'), end: new Date('2023-11-30') },
-    { label: '12-2023', start: new Date('2023-12-01'), end: new Date('2024-05-31') },
-    { label: '6-2024', start: new Date('2024-06-01'), end: new Date('2024-11-30') },
-    { label: '12-2024', start: new Date('2024-12-01'), end: new Date('2025-05-31') },
-    { label: '6-2025', start: new Date('2025-06-01'), end: new Date('2025-11-30') },
-    { label: '12-2025', start: new Date('2025-12-01'), end: new Date('2025-12-31') },
-  ];
+  // Automatically generate timeline periods from timeline data
+  const generateTimelinePeriods = () => {
+    if (!timelineData || timelineData.length === 0) return [];
+
+    // Sort timeline data by date
+    const sortedData = [...timelineData].sort((a, b) => new Date(a.date) - new Date(b.date));
+    
+    // Get the earliest and latest dates
+    const firstDate = new Date(sortedData[0].date);
+    const lastDate = new Date(sortedData[sortedData.length - 1].date);
+    
+    // Create periods of 6 months each
+    const periods = [];
+    let currentStart = new Date(firstDate.getFullYear(), firstDate.getMonth(), 1);
+    
+    while (currentStart <= lastDate) {
+      // Calculate end date (6 months from start)
+      const currentEnd = new Date(currentStart);
+      currentEnd.setMonth(currentEnd.getMonth() + 6);
+      currentEnd.setDate(0); // Last day of previous month
+      
+      // Format label with start and end dates
+      const startMonth = currentStart.getMonth() + 1;
+      const startYear = currentStart.getFullYear();
+      const endMonth = currentEnd.getMonth() + 1;
+      const endYear = currentEnd.getFullYear();
+      const label = `${startMonth}:${startYear} - ${endMonth}:${endYear}`;
+      
+      periods.push({
+        label,
+        start: new Date(currentStart),
+        end: new Date(currentEnd)
+      });
+      
+      // Move to next period
+      currentStart.setMonth(currentStart.getMonth() + 6);
+    }
+    
+    return periods;
+  };
+
+  const timelinePeriods = generateTimelinePeriods();
 
   // Width for each time period column
   const periodWidth = 300;
@@ -89,8 +118,8 @@ const Timeline = ({ onImageClick }) => {
           ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}
         `}
       >
-        <h2 className="font-clean font-medium text-4xl md:text-5xl lg:text-5xl text-gray-800">
-          Nhật ký hành trình
+        <h2 className="text-5xl md:text-4xl lg:text-5xl font-light" style={{ fontFamily: 'Poppins, sans-serif' }}>
+          Our Journey
         </h2>
       </div>
 
@@ -100,88 +129,90 @@ const Timeline = ({ onImageClick }) => {
         className="relative px-8 overflow-x-auto overflow-y-hidden timeline-scroll"
       >
         <div className="inline-flex min-w-max">
-          {timelinePeriods.map((period, periodIndex) => {
-            const itemsInPeriod = getItemsForPeriod(period);
+          {(() => {
+            let visualIndex = 0; // Track visual position for zigzag pattern
+            return timelinePeriods.map((period, periodIndex) => {
+              const itemsInPeriod = getItemsForPeriod(period);
 
-            return (
-              <div
-                key={period.label}
-                className="relative flex-shrink-0 border-r border-sky-200/50"
-                style={{ width: `${periodWidth}px` }}
-              >
-                {/* Period label */}
+              // Skip periods with no items
+              if (itemsInPeriod.length === 0) return null;
+
+              const currentVisualIndex = visualIndex;
+              visualIndex++; // Increment for next period
+
+              return (
                 <div
-                  className={`
-                    text-xs text-gray-500 font-clean text-center mb-2 pb-2
-                    transform transition-all duration-500
-                    ${isVisible ? 'opacity-100' : 'opacity-0'}
-                  `}
-                  style={{ transitionDelay: `${periodIndex * 50}ms` }}
+                  key={period.label}
+                  className="relative flex-shrink-0 border-r border-sky-200/50"
+                  style={{ width: `${periodWidth}px` }}
                 >
-                  {period.label}
-                  <div className="w-0.5 h-0.5 bg-gray-400 rounded-full mx-auto mt-1" />
-                </div>
-
-                {/* Horizontal timeline line for this period */}
-                <div className="mb-4">
+                  {/* Period label */}
                   <div
                     className={`
-                      h-px bg-gray-300/50 w-full
-                      transform origin-left transition-all duration-1000
-                      ${isVisible ? 'scale-x-100' : 'scale-x-0'}
+                      text-xs text-gray-500 font-clean text-center mb-2 pb-2
+                      transform transition-all duration-500
+                      ${isVisible ? 'opacity-100' : 'opacity-0'}
                     `}
-                    style={{ transitionDelay: `${periodIndex * 100}ms` }}
-                  />
-                </div>
+                    style={{ transitionDelay: `${periodIndex * 50}ms` }}
+                  >
+                    {period.label}
+                    <div className="w-0.5 h-0.5 bg-gray-400 rounded-full mx-auto mt-1" />
+                  </div>
 
-                {/* Items in this period */}
-                <div className="relative px-4" style={{ minHeight: '500px' }}>
-                  {itemsInPeriod.map((item) => {
-                    const globalIndex = timelineData.indexOf(item);
-                    const verticalOffset = globalIndex % 2 === 0 ? 0 : 180;
+                  {/* Horizontal timeline line for this period */}
+                  <div className="mb-4">
+                    <div
+                      className={`
+                        h-px bg-gray-300/50 w-full
+                        transform origin-left transition-all duration-1000
+                        ${isVisible ? 'scale-x-100' : 'scale-x-0'}
+                      `}
+                      style={{ transitionDelay: `${periodIndex * 100}ms` }}
+                    />
+                  </div>
 
-                    return (
-                      <>
-                        {globalIndex == 1 && (<div
-                          className={`
-                            absolute -left-28 top-1/2 transform -translate-y-1/2 -rotate-90
-                            text-black text-xs tracking-[0.3em] font-clean uppercase
-                            transition-all duration-700 hidden lg:block whitespace-nowrap z-10
-                          `}
-                        >
-                          Mọi thứ bắt đầu từ đây
-                        </div>)}
-                        <div
-                          key={item.year}
-                          className="absolute left-4 right-4"
-                          style={{
-                            top: `${verticalOffset}px`
-                          }}
-                        >
-                        <TimelineItem
-                          year={item.year}
-                          title={item.title}
-                          description={item.description}
-                          index={globalIndex}
-                          isVisible={isVisible}
-                          onClick={() => handleCardClick(item.year)}
-                          verticalOffset={0}
-                        />
+                  {/* Items in this period */}
+                  <div className="relative px-4" style={{ minHeight: '500px' }}>
+                    {itemsInPeriod.slice(0, 1).map((item, localIndex) => {
+                      const globalIndex = timelineData.indexOf(item);
+                      // Alternating vertical position based on visual index
+                      const verticalOffset = currentVisualIndex % 2 === 0 ? 0 : 180;
+
+                      return (
+                        <div key={item.year}>
+                          {globalIndex === 0 && (<div
+                            className={`
+                              absolute -left-28 top-1/2 transform -translate-y-1/2 -rotate-90
+                              text-black text-xs tracking-[0.3em] font-clean uppercase
+                              transition-all duration-700 hidden lg:block whitespace-nowrap z-10
+                            `}
+                          >
+                            Mọi thứ bắt đầu từ đây
+                          </div>)}
+                          <div
+                            className="absolute left-4 right-4"
+                            style={{
+                              top: `${verticalOffset}px`
+                            }}
+                          >
+                          <TimelineItem
+                            year={item.year}
+                            title={item.title}
+                            description={item.description}
+                            index={globalIndex}
+                            isVisible={isVisible}
+                            onClick={() => handleCardClick(item.year)}
+                            verticalOffset={0}
+                          />
+                          </div>
                         </div>
-                      </>
-                    );
-                  })}
-
-                  {/* Empty state if no items in period */}
-                  {itemsInPeriod.length === 0 && (
-                    <div className="text-center text-gray-400 text-sm font-clean py-8">
-                      Hem có gì
-                    </div>
-                  )}
+                      );
+                    })}
+                  </div>
                 </div>
-              </div>
-            );
-          })}
+              );
+            });
+          })()}
         </div>
       </div>
 
