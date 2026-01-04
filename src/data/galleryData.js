@@ -2,26 +2,55 @@
 export const timelineData = [
   {
     year: '2020',
+    date: '2020-02-14',
     title: 'The Beginning',
     description: 'The first year we met. First dates, sweet and shy moments together. Every glance, every smile became a precious memory that started our beautiful journey.',
   },
   {
     year: '2021',
+    date: '2021-03-20',
     title: 'Growing Closer',
     description: 'Second year, we understood each other better. Trips together, beautiful memories created. We learned each other\'s dreams, fears, and everything in between.',
   },
   {
+    year: '2021-Summer',
+    date: '2021-07-15',
+    title: 'Summer Adventure',
+    description: 'Our first summer vacation together. Beach days, sunset walks, and endless laughter under the warm sun.',
+  },
+  {
     year: '2022',
+    date: '2022-01-10',
     title: 'Growing Together',
     description: 'Third year, we overcame many challenges. Love grew deeper as we supported each other through thick and thin. Our bond became unbreakable.',
   },
   {
+    year: '2022-Fall',
+    date: '2022-09-25',
+    title: 'Cozy Moments',
+    description: 'Autumn brought us closer. Warm drinks, long conversations, and the comfort of being together.',
+  },
+  {
     year: '2023',
+    date: '2023-04-05',
     title: 'Shared Dreams',
     description: 'Fourth year, we started building our future. Plans, dreams together became clearer. We envisioned a life filled with love, laughter, and endless adventures.',
   },
   {
+    year: '2023-Winter',
+    date: '2023-12-20',
+    title: 'Holiday Magic',
+    description: 'Our first holidays in our new home. Creating traditions and memories that will last forever.',
+  },
+  {
+    year: '2024',
+    date: '2024-06-10',
+    title: 'New Beginnings',
+    description: 'Embracing new chapters together. Every day brings something special when we\'re together.',
+  },
+  {
     year: '2024-2025',
+    date: '2025-02-14',
     title: '5 Years & Forever',
     description: 'Fifth year, celebrating this special milestone. Thank you for being with me through every moment. Here\'s to forever and always. ❤️',
   },

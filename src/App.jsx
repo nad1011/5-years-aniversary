@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react';
 import Hero from './components/Hero';
 import Timeline from './components/Timeline';
-import FloatingHearts from './components/FloatingHearts';
 import FullscreenViewer from './components/FullscreenViewer';
 
 function App() {
@@ -59,9 +58,6 @@ function App() {
 
   return (
     <div className="relative min-h-screen overflow-x-hidden">
-      {/* Floating decorations */}
-      <FloatingHearts mousePosition={mousePosition} />
-      
       {/* Hero section */}
       <Hero />
       
